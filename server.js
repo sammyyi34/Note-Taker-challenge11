@@ -6,11 +6,10 @@ const api = require('./routes/api');
 const app = express();
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
-
-app.use('/', html);
-app.use('/api', api);
+app.use(html);
+app.use(api);
 
 app.listen(PORT, () => {
   console.log(`App listening at http://localhost:${PORT}`)
