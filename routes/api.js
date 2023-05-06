@@ -2,7 +2,7 @@ const apiRoute = require('express').Router();
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 
-app.get('/api/notes', (req, res) => {
+apiRoute.get('/api/notes', (req, res) => {
   fs.readFile('./db/db.json', 'utf8', (err, data) => {
     const notes = JSON.parse(data);
     res.json(notes);
@@ -10,7 +10,7 @@ app.get('/api/notes', (req, res) => {
 });
 
 
-app.post('/api/notes', (req, res) => {
+apiRoute.post('/api/notes', (req, res) => {
   fs.readFile('./db/db.json', 'utf8', (err, data) => {
     const notes = JSON.parse(data);
     const {title, text} = req.body;
@@ -25,5 +25,19 @@ app.post('/api/notes', (req, res) => {
     });
   }); 
 });
+
+apiRoute.delete('/api/notes/:id', (req, res) => {
+  fs.readFile('./db/db.json', 'utf8', (err, data) => {
+    const results = JSON.parse(data);
+    const deleteNote = results.filter((notes) => {
+      return notes.id !== req.params.id;
+    });
+    fs.writeFile('./db/db.json', JSON.stringify(deleteNote), (err) => {
+      if (err) throw err;
+      res.json('Your note has been deleted.');
+    });
+  });
+});
+
 
 module.exports = apiRoute;
