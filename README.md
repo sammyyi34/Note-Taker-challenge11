@@ -21,3 +21,7 @@ Contributors: None
 To run tests, run the following command: undefined
 # Questions
 If you have any questions about the repo, open an issue or contact me directly at sammyhyi@gmail.com.
+# Demo
+https://user-images.githubusercontent.com/128865904/236658298-c5df1cbc-8b71-42ab-9fc6-258ddee6d71d.mp4
+# Link to live page
+https://note-taking-app34.herokuapp.com/
